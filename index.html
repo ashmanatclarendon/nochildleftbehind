@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#152e34">
+<meta name="description" content="Rescue five children, negotiate an eighteenth-century hospital, and endure some spectacularly unhelpful parenting advice. A standalone platform game.">
+<title>Émile: No Child Left Behind</title>
+<style>
+:root{color-scheme:light;--ink:#223a3c;--paper:#f4f0e5;--line:#d7d2c4;--rust:#a34a32;--gold:#dfb86d;--green:#294c43}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background-image:radial-gradient(#203b3710 .7px,transparent .7px);background-size:7px 7px}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,canvas:focus-visible{outline:3px solid #b86a3e;outline-offset:4px}button:disabled{opacity:.45;cursor:default}button{touch-action:manipulation}header{max-width:1200px;margin:auto;padding:20px 22px 17px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{display:grid;place-items:center;background:var(--ink);color:#f2d69e;border-radius:50%;width:40px;height:40px;font:italic 30px Georgia,serif}.brand h1{font:600 18px Georgia,serif;margin:0}.brand p{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin:3px 0 0;color:#69766e}.actions{display:flex;align-items:center;gap:7px}.icon-btn{background:transparent;border:1px solid var(--line);border-radius:5px;padding:8px 10px;color:var(--ink);min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:6px}.icon-btn:hover{background:#e6e2d8}.icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.icon-btn .label{font-size:12px}main{max-width:1200px;margin:auto;padding:0 22px 20px}.game-shell{border:1px solid #3b4d46;border-radius:9px;overflow:hidden;background:#152e34;box-shadow:0 20px 55px #24302b1c}.status{min-height:67px;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#ebe7db;border-bottom:1px solid #adb4a5}.level-meta{min-width:170px}.micro{font-size:9px;font-weight:750;letter-spacing:1.8px;text-transform:uppercase;color:#6c786d}.level-name{font:600 19px/1.3 Georgia,serif;margin-top:2px}.rescue-track{display:flex;align-items:center;gap:7px}.child-token{width:31px;height:35px;position:relative;border:1px solid #bfc7b9;background:#dde1d5;border-radius:16px 16px 9px 9px;opacity:.65;display:grid;place-items:center;transition:background .5s,opacity .5s,transform .4s}.child-token:before{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#9ca89d;top:5px}.child-token:after{content:"";position:absolute;top:18px;width:17px;height:11px;border-radius:8px;background:#b2bdb0}.child-token.saved{opacity:1;background:#f7e8b8;border-color:#b6924c;transform:translateY(-1px)}.child-token.saved:before{background:#e4ad82}.child-token.saved:after{background:var(--ribbon,#5c8278)}.rescue-caption{font-size:11px;margin-left:7px;white-space:nowrap}.life-box{text-align:right;min-width:120px}.hearts{font-size:20px;letter-spacing:3px;line-height:1.1;color:var(--rust)}.stage{position:relative;width:100%;aspect-ratio:16/9;isolation:isolate;overflow:hidden;background:#152e34}#game{display:block;width:100%;height:100%;outline-offset:-4px;touch-action:none}.objective{position:absolute;left:20px;top:17px;display:flex;align-items:center;gap:10px;padding:9px 13px;color:#f6edce;background:#10252cdb;border:1px solid #b49b5e55;border-radius:4px;pointer-events:none;max-width:calc(100% - 40px)}.objective-number{width:24px;height:24px;border:1px solid #cbb57777;border-radius:50%;display:grid;place-items:center;font:italic 16px Georgia,serif;color:var(--gold)}.objective-text{font-size:12px;line-height:1.4}.objective-text small{display:block;color:#abbeb3;font-size:10px}.toast{position:absolute;top:78px;left:50%;transform:translate(-50%,-10px);padding:9px 15px;background:#f6edcf;color:#263e3e;box-shadow:0 6px 22px #0003;border-radius:4px;text-align:center;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;max-width:80%;z-index:3}.toast.on{opacity:1;transform:translate(-50%,0)}.interaction{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);background:#f9efd6;color:#24423e;border:1px solid #d4b471;border-radius:5px;box-shadow:0 5px 18px #0004;padding:7px 13px;font-size:12px;pointer-events:none;white-space:nowrap;z-index:2}.interaction[hidden]{display:none}.interaction kbd{background:#294c43;color:#fff4d9;border-color:#1e3e37;margin-right:5px}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:30px;background:#0c202bcc;z-index:5}.overlay[hidden]{display:none}.overlay.title{justify-content:flex-start;background:linear-gradient(90deg,#102730f5 0%,#102730e8 35%,#10273066 69%,#1027300a 100%)}.panel{max-width:485px;color:#f5edd7}.panel .eyebrow{font-size:10px;font-weight:650;letter-spacing:2.4px;text-transform:uppercase;color:#d7b779;margin:0 0 13px}.panel h2{font:normal clamp(28px,4vw,48px)/1.09 Georgia,serif;letter-spacing:-1px;margin:0 0 16px}.panel h2.big-title{font-size:clamp(48px,7.4vw,90px);font-style:italic;margin-bottom:1px;line-height:1.05}.title-sub{font-size:clamp(13px,1.7vw,21px);letter-spacing:4px;line-height:1.6;color:#dfbc7b;text-transform:uppercase;margin:0 0 19px}.panel .description{font-size:14px;line-height:1.8;color:#d0d9cb;margin:0 0 21px;max-width:375px}.primary{background:#e5c17e;color:#203a3a;border:1px solid #f2d89c;box-shadow:0 3px 0 #9c773e;border-radius:4px;padding:11px 19px;font-weight:750;font-size:13px}.primary:hover{background:#f1d39c}.primary:active{transform:translateY(2px);box-shadow:0 1px 0 #9c773e}.secondary{background:transparent;color:#e9dfc6;border:1px solid #b0bca466;border-radius:4px;padding:10px 16px;font-size:12px}.secondary:hover{background:#ffffff0c}.panel-buttons{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.key-guide{margin-top:24px;display:flex;flex-wrap:wrap;gap:11px;color:#a8baae;font-size:10px}.key-guide span{display:flex;align-items:center;gap:5px}kbd{display:inline-block;padding:1px 5px;font:11px/1.7 system-ui,sans-serif;min-width:21px;text-align:center;color:inherit;border:1px solid #adba9d55;background:#edebd70a;border-radius:3px}.level-panel{text-align:center;max-width:510px;padding:20px}.level-panel .description{max-width:none}.level-panel .panel-buttons{justify-content:center}.large-icon{font-size:40px;color:#e3bd77;margin-bottom:7px}.summary-line{margin:0 0 18px;font:italic 19px/1.5 Georgia,serif;color:#ead3a6}.quote-bar{min-height:85px;display:flex;gap:15px;padding:13px 20px;background:#1b3439;border-top:1px solid #72857855;color:#d6dece;align-items:center}.portrait{flex:none;display:block;width:48px;height:54px;overflow:visible}.quote-content{flex:1;min-width:0}.quote-heading{font-size:9px;letter-spacing:1.8px;color:#d8b87f;font-weight:650;margin:0 0 4px;text-transform:uppercase}.quote-content p{font:italic 16px/1.45 Georgia,serif;margin:0}.quote-meta{border-left:1px solid #80918333;padding-left:17px;color:#a1b2a3;font-size:10px;white-space:nowrap;text-align:right}.quote-meta strong{color:#e0c894;font-size:16px;font-family:Georgia,serif;display:block;font-weight:400}.footer{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-top:14px;color:#69776e;font-size:11px}.footer p{margin:0}.footer details{max-width:470px;text-align:right}.footer summary{cursor:pointer;display:inline-block;color:#445f52;text-decoration:underline;text-underline-offset:3px}.footer details p{margin-top:8px;line-height:1.6;text-align:left}.footer a{color:#445f52}.touch-controls{display:none;position:absolute;bottom:12px;left:12px;right:12px;justify-content:space-between;pointer-events:none;z-index:4}.touch-group{display:flex;gap:8px}.touch-btn{pointer-events:auto;user-select:none;-webkit-user-select:none;touch-action:none;display:grid;place-items:center;border:1px solid #d5e2c980;background:#112e35c7;color:#f9e9bd;width:56px;height:52px;border-radius:9px;font-weight:750;font-size:24px;box-shadow:0 3px 8px #0003}.touch-btn.active{background:#d6b875;color:#19393b}.touch-btn.action-btn{font-size:11px;letter-spacing:.5px;width:65px}.touch-btn.jump-btn{background:#d7b772dd;color:#1e3c3d;font-size:14px;width:70px}.touch-btn.jump-btn.active{background:#f7e0a1}.touch-on .touch-controls{display:flex}.touch-on .interaction{bottom:78px}.touch-on .key-guide{display:none}.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}.stage:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;background:#10262d;display:grid;place-items:center}.stage:fullscreen #game{width:min(100vw,177.77vh);height:min(100vh,56.25vw)}.stage:fullscreen .overlay{padding:5vw}.stage:fullscreen .panel h2.big-title{font-size:90px}.stage:fullscreen .objective{left:28px;top:24px}
+@media(pointer:coarse){.touch-controls{display:flex}.interaction{bottom:78px}.key-guide{display:none}}
+@media(max-width:700px){header{padding:13px 10px;gap:8px}.brand{gap:7px}.brand-mark{width:31px;height:31px;font-size:24px}.brand h1{font-size:15px}.brand p{font-size:8px;letter-spacing:1px}.actions{gap:4px}.icon-btn{min-height:33px;padding:7px}.icon-btn .label{display:none}main{padding:0 8px 14px}.status{min-height:54px;padding:8px 10px;gap:6px}.micro{font-size:8px;letter-spacing:1px}.level-meta{min-width:0}.level-name{font-size:14px}.child-token{width:22px;height:27px}.child-token:before{width:8px;height:8px;top:4px}.child-token:after{top:14px;width:13px;height:8px}.rescue-track{gap:4px}.rescue-caption{display:none}.life-box{min-width:76px}.hearts{font-size:16px;letter-spacing:1px}.objective{top:10px;left:10px;padding:5px 8px;gap:6px}.objective-number{width:19px;height:19px;font-size:13px}.objective-text{font-size:10px}.objective-text small{display:none}.overlay{padding:18px}.panel{max-width:66%}.panel .eyebrow{font-size:8px;letter-spacing:1px;margin-bottom:6px}.panel .description{font-size:11px;line-height:1.5;margin-bottom:12px}.panel h2.big-title{font-size:44px}.title-sub{letter-spacing:1.8px;font-size:12px;margin-bottom:9px}.primary{padding:8px 12px;font-size:11px}.secondary{padding:7px 10px;font-size:11px}.level-panel{max-width:90%;padding:0}.level-panel h2{font-size:25px;margin-bottom:9px}.large-icon{font-size:27px;margin-bottom:2px}.summary-line{font-size:14px;margin-bottom:11px}.key-guide{margin-top:12px;gap:8px;font-size:9px}.key-guide kbd{font-size:9px;padding:0 4px;min-width:17px}.quote-bar{min-height:74px;padding:10px;gap:10px}.portrait{width:35px;height:43px}.quote-heading{font-size:8px;letter-spacing:1px}.quote-content p{font-size:13px}.quote-meta{padding-left:9px;font-size:8px}.quote-meta strong{font-size:14px}.footer{font-size:10px;gap:12px}.footer>p{max-width:55%}.touch-btn{width:43px;height:40px;font-size:20px}.touch-btn.action-btn{width:48px;font-size:9px}.touch-btn.jump-btn{width:55px;font-size:11px}.touch-group{gap:5px}.touch-controls{bottom:8px;left:8px;right:8px}.interaction{bottom:60px!important;font-size:10px;padding:5px 9px}.toast{top:52px;font-size:10px;padding:6px 10px}}
+@media(max-width:430px){.brand p{display:none}.actions .optional{display:none}.panel .eyebrow{display:none}.panel h2.big-title{font-size:34px}.title-sub{font-size:10px}.panel .description{font-size:10px;margin-bottom:9px}.quote-meta{display:none}.key-guide{display:none}.panel h2{font-size:21px}.level-panel .description{font-size:10px}.level-panel .large-icon{display:none}.footer{flex-direction:column;gap:5px}.footer>p{max-width:none}.footer details{text-align:left}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="brand-mark" aria-hidden="true">É</div><div><h1>Émile: No Child Left Behind</h1><p>A philosophical rescue mission</p></div></div>
+ <nav class="actions" aria-label="Game controls">
+  <button class="icon-btn" id="sound" aria-pressed="false" title="Turn sound on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path id="soundMark" d="m16 9 6 6m0-6-6 6"/></svg><span class="label" id="soundLabel">Sound off</span></button>
+  <button class="icon-btn" id="pause" disabled title="Pause (P)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><span class="label">Pause</span></button>
+  <button class="icon-btn optional" id="restart" disabled title="Restart this level (R)" aria-label="Restart this level"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a8 8 0 1 1 0 7M4 3v6h6"/></svg></button>
+  <button class="icon-btn" id="fullscreen" title="Full screen" aria-label="Toggle full screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+ </nav>
+</header>
+<main>
+ <div class="game-shell">
+  <div class="status">
+   <div class="level-meta"><div class="micro" id="levelCount">Chapter I of V</div><div class="level-name" id="levelName">The Courtyard</div></div>
+   <div class="rescue-track" aria-label="Children rescued: 0 of 5" id="rescueTrack"><span class="child-token" style="--ribbon:#568c7e"></span><span class="child-token" style="--ribbon:#b77061"></span><span class="child-token" style="--ribbon:#b59651"></span><span class="child-token" style="--ribbon:#7688a3"></span><span class="child-token" style="--ribbon:#9b7795"></span><span class="rescue-caption" id="rescueCount">0 / 5 safe</span></div>
+   <div class="life-box"><div class="hearts" id="hearts" aria-label="3 hearts">♥ ♥ ♥</div><div class="micro" id="pageCount">Excuses filed: 0</div></div>
+  </div>
+  <div class="stage" id="stage">
+   <canvas id="game" width="1152" height="648" tabindex="0" aria-label="Platform game. Move with arrow keys or A and D. Jump with space, W or up. Interact with E. Rescue the child and return to the entrance.">Your browser needs Canvas support to play.</canvas>
+   <div class="objective" id="objective"><span class="objective-number" id="objectiveNumber">1</span><span class="objective-text" id="objectiveText">Find the brass key<small>Then reach the nursery on the right.</small></span></div>
+   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+   <div class="interaction" id="interaction" hidden><kbd>E</kbd> <span id="interactionText"></span></div>
+   <div class="touch-controls" id="touchControls" aria-label="Touch game controls">
+    <div class="touch-group"><button class="touch-btn" data-control="left" aria-label="Move left">←</button><button class="touch-btn" data-control="right" aria-label="Move right">→</button></div>
+    <div class="touch-group"><button class="touch-btn action-btn" data-control="interact" aria-label="Interact">ACT</button><button class="touch-btn jump-btn" data-control="jump" aria-label="Jump">JUMP</button></div>
+   </div>
+   <div class="overlay title" id="overlay">
+    <div class="panel" id="panel"></div>
+   </div>
+  </div>
+  <div class="quote-bar">
+   <svg class="portrait" viewBox="0 0 54 62" aria-hidden="true"><ellipse cx="27" cy="32" rx="25" ry="29" fill="#284850" stroke="#78867a"/><path d="M8 59q1-20 19-20t19 20" fill="#a3654b"/><path d="m22 40 5 15 7-16" fill="#e4d8af"/><path d="M13 24q1-18 15-17t14 19" fill="#493e33"/><path d="M16 26q-1 19 11 20t13-20" fill="#d8ac83"/><path d="M12 24q0-8 15-10t17 10l-1 5q-13-5-31 0z" fill="#76624c"/><path d="M14 22q12-7 28 0" fill="none" stroke="#96836a" stroke-width="3"/><path d="m20 30 5-1m7 0 5 1m-13 9q5 2 8-1" fill="none" stroke="#594b3f" stroke-linecap="round"/><path d="m28 31-2 5h4" fill="none" stroke="#b38365"/><circle cx="22" cy="32" r="1" fill="#333d37"/><circle cx="34" cy="32" r="1" fill="#333d37"/></svg>
+   <div class="quote-content"><div class="quote-heading">Jean-Jacques Rousseau · supervising</div><p id="quote">“I have some very important thoughts about the upbringing of children.”</p></div>
+   <div class="quote-meta">Practical assistance<strong>None whatsoever</strong></div>
+  </div>
+ </div>
+ <div class="footer"><p>Move <b>← → / A D</b> · Jump <b>Space / W / ↑</b> · Act <b>E</b> · Pause <b>P</b><br>One HTML file. No downloads or connection needed to play.</p><details><summary>A small historical footnote</summary><p>In Book VIII of his <a href="https://www.gutenberg.org/cache/epub/3908/pg3908-images.html" target="_blank" rel="noopener">Confessions</a>, Rousseau says that all five of his children were sent to the foundling hospital. This game imagines a rescue. The dialogue, characters and adventures are fictional.</p></details></div>
+ <div class="sr-only" id="announcer" aria-live="polite"></div>
+</main>
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id);
+const canvas=$('game'), ctx=canvas.getContext('2d'), W=1152, H=648, FLOOR=520;
+const colours={gold:'#e3be77',cream:'#f0e3bb',ink:'#15343d',skin:'#e3b18a',blue:'#477d87'};
+const ribbons=['#568c7e','#b77061','#b59651','#7688a3','#9b7795'];
+const specs=[
+ {name:'The Courtyard',roman:'I',width:2440,tint:'#233e43',accent:'#c19660',pits:[130,140,130],speed:48,quote:'I suggest allowing the controls to reveal themselves through experience.'},
+ {name:'The Hall of Good Intentions',roman:'II',width:2680,tint:'#303e45',accent:'#b79d71',pits:[145,155,145],speed:60,quote:'My intentions, you understand, were quite impeccable.'},
+ {name:'The Archive of Excuses',roman:'III',width:2920,tint:'#343d49',accent:'#b69b75',pits:[155,160,155],speed:72,quote:'I have written extensively on responsibility. That must count for something.'},
+ {name:'The Gallery of Natural Education',roman:'IV',width:3160,tint:'#334941',accent:'#b59d6a',pits:[160,170,165],speed:83,quote:'Perhaps the child should discover the exit independently.'},
+ {name:'The Philosopher’s Nursery',roman:'V',width:3400,tint:'#3e3e48',accent:'#c69b70',pits:[165,180,175],speed:94,quote:'Five children? I had rather hoped the first four were a sufficient demonstration.'}
+];
+const successLines=[
+ 'One child safe. Rousseau has requested a moment to explain.',
+ 'Two children safe. His theory remains entirely untroubled.',
+ 'Three children safe. The paperwork is becoming awkward.',
+ 'Four children safe. He is considering a second edition.',
+ 'Five children safe. At last, some practical education.'
+];
+const input={left:false,right:false,jump:false,interact:false};
+const physicalKeys=new Set(), touchKeys=new Set();
+let mode='title',levelIndex=0,rescued=0,totalPages=0,levelPages=0,deaths=0;
+let level,player,cam=0,clock=0,visualClock=0,acc=0,last=0,elapsed=0;
+let jumpBuffer=0,jumpReleased=false,interactPressed=false,interactCooldown=0;
+let toastTime=0,quoteTime=0,quoteIndex=0,checkpointNotice=false;
+let particles=[],soundOn=false,audioCtx=null,musicBeat=0,musicTimer=0;
+let completionTime=0,health=3,bestTime=null;
+try{bestTime=Number(localStorage.getItem('emile-rescue-best'))||null;}catch(e){}
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const ease=(a,b,t)=>a+(b-a)*t;
+function rr(x,y,w,h,r=4,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.stroke();}}
+function ellipse(x,y,rx,ry,fill){ctx.fillStyle=fill;ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fill();}
+function line(x1,y1,x2,y2,c,w=1){ctx.strokeStyle=c;ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+function textAt(s,x,y,size=12,c=colours.cream,align='left',font='Georgia'){ctx.fillStyle=c;ctx.font=`${size}px ${font}`;ctx.textAlign=align;ctx.fillText(s,x,y);}
+function rnd(i){const n=Math.sin(i*127.1+311.7)*43758.5453;return n-Math.floor(n);}
+function announce(s){$('announcer').textContent=s;}
+function say(s){$('quote').textContent='“'+s+'”';quoteTime=0;}
+function toast(s,seconds=3){$('toast').textContent=s;$('toast').classList.add('on');toastTime=seconds;announce(s);}
+function setObjective(){
+ let n=1,t='Find the brass key',sub='Jump onto the shelves ahead.';
+ if(player?.hasKey){n=2;t='Reach the nursery';sub='Unlock the gate with E.';}
+ if(player?.carrying){n=3;t='Bring the child to safety ←';sub='Return to the blue door at the start.';}
+ $('objectiveNumber').textContent=n;$('objectiveText').innerHTML=t+'<small>'+sub+'</small>';
+}
+function updateHUD(){
+ $('levelCount').textContent=`Chapter ${specs[levelIndex].roman} of V`;
+ $('levelName').textContent=specs[levelIndex].name;
+ $('rescueCount').textContent=rescued+' / 5 safe';
+ $('rescueTrack').setAttribute('aria-label',`Children rescued: ${rescued} of 5`);
+ document.querySelectorAll('.child-token').forEach((el,i)=>el.classList.toggle('saved',i<rescued));
+ $('hearts').textContent=Array.from({length:3},(_,i)=>i<health?'♥':'♡').join(' ');
+ $('hearts').setAttribute('aria-label',health+' hearts');
+ $('pageCount').textContent='Excuses filed: '+(totalPages+levelPages);
+ $('pause').disabled=mode!=='playing'&&mode!=='paused';
+ $('restart').disabled=mode==='title'||mode==='victory';
+ setObjective();
+}
+function makeLevel(i){
+ const s=specs[i], pits=[{x:500,w:s.pits[0]},{x:Math.round(s.width*.46),w:s.pits[1]},{x:Math.round(s.width*.70),w:s.pits[2]}];
+ const ground=[];let start=-100;
+ for(const pit of pits){ground.push({x:start,y:FLOOR,w:pit.x-start,h:250,ground:true});start=pit.x+pit.w;}
+ ground.push({x:start,y:FLOOR,w:s.width+100-start,h:250,ground:true});
+ const keyX=880+i*95,gateX=s.width-530;
+ const plats=[
+  {x:300,y:442,w:144,h:18},
+  {x:keyX-275,y:444,w:160,h:18},
+  {x:keyX-95,y:366,w:190,h:18},
+  {x:gateX-388,y:445,w:150,h:18},
+  {x:gateX-235,y:368,w:135,h:18}
+ ];
+ pits.forEach((p,j)=>plats.push({x:p.x+p.w/2-54,y:442+(j===1?8:0),w:108,h:18,moving:true,baseX:p.x+p.w/2-54,baseY:442+(j===1?8:0),phase:j*1.8+i*.7,dx:0,dy:0}));
+ const enemies=[];
+ for(let j=0;j<Math.min(4,i+1);j++){
+  const left=j===0?pits[0].x+pits[0].w+58:j===1?pits[1].x+pits[1].w+30:j===2?pits[2].x+pits[2].w+30:keyX+160;
+  let right=j===0?Math.min(keyX-310,left+125):j===1?Math.min(pits[2].x-45,left+140):j===2?gateX-40:Math.min(pits[1].x-55,left+120);
+  if(right-left<45)right=left+65;
+  enemies.push({x:left,y:FLOOR-32,w:30,h:30,left,right,dir:1,speed:s.speed+j*7,phase:j*1.3});
+ }
+ return {width:s.width,pits,ground,plats,enemies,gate:{x:gateX,y:246,w:25,h:FLOOR-246,open:false},key:{x:keyX+5,y:330,w:26,h:24,taken:false},crib:{x:s.width-190,y:FLOOR-58,w:65,h:58},pages:[{x:366,y:412,w:20,h:24,taken:false},{x:keyX+62,y:331,w:20,h:24,taken:false},{x:gateX-170,y:334,w:20,h:24,taken:false}],exit:{x:96,y:FLOOR-113,w:70,h:113},checkpoint:{x:190,y:FLOOR-60},flag:{x:gateX-68,y:FLOOR-62,w:12,h:62,active:false},bridges:false};
+}
+function clearInput(){physicalKeys.clear();touchKeys.clear();Object.keys(input).forEach(k=>input[k]=false);jumpBuffer=0;interactPressed=false;document.querySelectorAll('.touch-btn').forEach(b=>b.classList.remove('active'));}
+function resetLevel(i,first=false){
+ levelIndex=i;level=makeLevel(i);health=3;levelPages=0;clock=0;cam=0;
+ player={x:190,y:FLOOR-60,w:31,h:60,vx:0,vy:0,facing:1,onGround:true,coyote:.1,hasKey:false,carrying:false,invuln:0,walk:0,standing:null};
+ particles=[];jumpBuffer=0;jumpReleased=false;interactPressed=false;interactCooldown=0;checkpointNotice=false;quoteTime=0;quoteIndex=0;
+ clearInput();say(specs[i].quote);setObjective();updateHUD();
+ if(!first)toast(`Chapter ${specs[i].roman}: ${specs[i].name}`,2.6);
+}
+function startGame(){rescued=0;totalPages=0;deaths=0;elapsed=0;resetLevel(0,true);mode='playing';hidePanel();updateHUD();canvas.focus();if(soundOn)initAudio();toast('Find the brass key on the high shelf. Jump with Space.',4.5);}
+function hidePanel(){$('overlay').hidden=true;$('interaction').hidden=true;}
+function showPanel(html,title=false){$('overlay').hidden=false;$('overlay').classList.toggle('title',title);$('panel').className='panel'+(title?'':' level-panel');$('panel').innerHTML=html;$('interaction').hidden=true;requestAnimationFrame(()=>$('panel').querySelector('button')?.focus());}
+function showTitle(){
+ mode='title';resetLevel(0,true);
+ showPanel(`<p class="eyebrow">Five children. One very unhelpful philosopher.</p><h2 class="big-title">Émile</h2><p class="title-sub">No Child Left Behind</p><p class="description">Find the keys. Rescue the children.<br>Do the parenting Rousseau has been<br>far too busy writing about.</p><div class="panel-buttons"><button class="primary" id="begin">Begin the rescue →</button></div><div class="key-guide"><span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>Space</kbd> jump</span><span><kbd>E</kbd> act</span></div>`,true);
+ $('begin').onclick=startGame;updateHUD();
+}
+function pauseGame(){if(mode==='playing'){mode='paused';clearInput();showPanel('<p class="eyebrow">A moment for reflection</p><h2>The children can wait.<br>Briefly.</h2><p class="description">Move with ← → or A / D. Jump with Space, W or ↑.<br>Press E to unlock, pick up, and bring the child home.<br>Gold pages are optional. Three hearts; unlimited retries.</p><div class="panel-buttons"><button class="primary" id="resume">Resume rescue →</button><button class="secondary" id="retryPause">Restart level</button></div>');$('resume').onclick=resumeGame;$('retryPause').onclick=restartLevel;updateHUD();}else if(mode==='paused')resumeGame();}
+function resumeGame(){if(mode!=='paused')return;mode='playing';hidePanel();clearInput();canvas.focus();updateHUD();}
+function restartLevel(){if(mode==='title'||mode==='victory')return;resetLevel(levelIndex);mode='playing';hidePanel();canvas.focus();updateHUD();}
+function completeLevel(){
+ if(mode!=='playing')return;rescued++;totalPages+=levelPages;levelPages=0;mode='complete';clearInput();sfx('rescue');spark(player.x+15,player.y,25,'#e8cb89');updateHUD();
+ say(['Of course, this was broadly what I intended.','I shall include a footnote acknowledging your contribution.','The important thing is that my principles remain sound.','You make it look so very straightforward.'][Math.min(levelIndex,3)]);
+ if(rescued===5){winGame();return;}
+ showPanel(`<div class="large-icon" aria-hidden="true">✦</div><p class="eyebrow">Child ${rescued} of 5 · safely home</p><h2>${successLines[levelIndex]}</h2><p class="description">Next: ${specs[levelIndex+1].name}.<br>Another child. Another key. More unsolicited advice.</p><div class="panel-buttons"><button class="primary" id="nextLevel">Rescue the next child →</button><button class="secondary" id="pauseBetween">Take a breather</button></div>`);
+ $('nextLevel').onclick=nextLevel;$('pauseBetween').onclick=()=>{$('pauseBetween').textContent='No rush. They are safe here.';$('pauseBetween').disabled=true;};
+}
+function nextLevel(){if(mode!=='complete')return;resetLevel(levelIndex+1);mode='playing';hidePanel();updateHUD();canvas.focus();}
+function formatTime(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');}
+function winGame(){
+ mode='victory';completionTime=elapsed;
+ if(!bestTime||elapsed<bestTime){bestTime=elapsed;try{localStorage.setItem('emile-rescue-best',String(elapsed));}catch(e){}}
+ cam=0;say('I am delighted to accept this award for my outstanding contribution to the welfare of children.');
+ showPanel(`<div class="large-icon" aria-hidden="true">✦ ✦ ✦ ✦ ✦</div><p class="eyebrow">All five children rescued</p><h2>Somebody actually<br>looked after the children.</h2><p class="description">The children are safe. Rousseau has received an award.<br>He would like to thank his theoretical framework.</p><p class="summary-line">${formatTime(completionTime)} · ${totalPages} / 15 excuses filed · ${deaths} ${deaths===1?'setback':'setbacks'}</p><div class="panel-buttons"><button class="primary" id="playAgain">One more practical demonstration →</button></div>`);
+ $('playAgain').onclick=startGame;updateHUD();announce('All five children rescued. You won!');
+}
+function initAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){soundOn=false;return;}}if(audioCtx.state==='suspended')audioCtx.resume().catch(()=>{});}
+function note(freq,duration=.16,vol=.035,type='triangle',delay=0){if(!soundOn||!audioCtx)return;try{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime+delay;o.type=type;o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.008);g.gain.exponentialRampToValueAtTime(.001,t+duration);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+duration+.02);}catch(e){}}
+function sfx(type){if(type==='jump')note(235,.1,.025);if(type==='key'){[440,554,659,880].forEach((n,i)=>note(n,.21,.04,'triangle',i*.07));}if(type==='page'){note(659,.12,.025);note(880,.14,.025,'triangle',.07);}if(type==='damage'){note(140,.2,.04,'sawtooth');note(110,.25,.025,'triangle',.1);}if(type==='gate'){note(180,.22,.025);note(270,.22,.025,'triangle',.08);}if(type==='rescue'){[392,494,587,784,988].forEach((n,i)=>note(n,.3,.045,'triangle',i*.11));}}
+function toggleSound(){soundOn=!soundOn;if(soundOn){initAudio();note(440,.15,.025);}$('sound').setAttribute('aria-pressed',String(soundOn));$('soundLabel').textContent=soundOn?'Sound on':'Sound off';$('sound').title=soundOn?'Turn sound off':'Turn sound on';$('soundMark').setAttribute('d',soundOn?'M16 8q4 4 0 8m3-11q7 7 0 14':'m16 9 6 6m0-6-6 6');if(mode==='playing')canvas.focus();}
+function spark(x,y,n,c){for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-.5)*180,vy:-40-Math.random()*150,life:.4+Math.random()*.6,max:1,c,size:2+Math.random()*3});}
+function hurt(){
+ if(player.invuln>0||mode!=='playing')return;
+ health--;deaths++;sfx('damage');
+ if(health<=0){mode='retry';clearInput();showPanel('<p class="eyebrow">A practical setback</p><h2>Even good intentions<br>need another attempt.</h2><p class="description">Your rescued children are safe. Try this chapter again.<br>Tip: you can jump over the wandering excuses.</p><div class="panel-buttons"><button class="primary" id="tryAgain">Try this chapter again →</button></div>');$('tryAgain').onclick=restartLevel;updateHUD();return;}
+ spark(player.x+15,player.y+30,10,'#bda589');
+ player.x=level.checkpoint.x;player.y=level.checkpoint.y;player.vx=0;player.vy=0;player.invuln=2;player.onGround=false;player.standing=null;cam=clamp(player.x-W*.35,0,level.width-W);
+ toast(player.carrying?'You and the child are back at the checkpoint.':'Back at the last checkpoint. Keep going.',2.5);updateHUD();
+}
+function attemptInteraction(){
+ if(mode!=='playing'||interactCooldown>0)return;interactCooldown=.3;
+ const pc={x:player.x+player.w/2,y:player.y+player.h};
+ if(player.carrying&&Math.abs(pc.x-(level.exit.x+35))<82&&Math.abs(pc.y-FLOOR)<65){completeLevel();return;}
+ if(!player.carrying&&distance(pc,{x:level.crib.x+30,y:FLOOR})<89){
+  player.carrying=true;level.bridges=true;health=3;level.checkpoint={x:level.crib.x-30,y:FLOOR-player.h};spark(player.x+15,player.y,20,'#e8cc88');sfx('rescue');say(['An adult carrying a child. An intriguing arrangement.','Must you be quite so literal about caring for them?','You appear to have mistaken a philosophical problem for a practical one.','I should have thought the child capable of independent movement.','I see you have elected to repeat this procedure five times.'][levelIndex]);toast('Child rescued! Return to the blue door on the left. The low bridges are now open.',5);setObjective();updateHUD();return;
+ }
+ if(!level.gate.open&&Math.abs(pc.x-level.gate.x)<88&&pc.y>level.gate.y){
+  if(player.hasKey){level.gate.open=true;sfx('gate');spark(level.gate.x,340,12,'#daba78');toast('Nursery gate unlocked. The child is ahead.');setObjective();}
+  else toast('The nursery is locked. Find the brass key on the high shelf to the left.',4);
+  return;
+ }
+ if(!player.carrying&&Math.abs(pc.x-(level.exit.x+35))<78)toast('A safe place for the children. The nursery is to the right →');
+}
+function getSolids(){const solids=[...level.ground,...level.plats];if(level.bridges)for(const pit of level.pits)solids.push({x:pit.x-5,y:FLOOR-6,w:pit.w+10,h:18,bridge:true});return solids;}
+function step(dt){
+ clock+=dt;elapsed+=dt;quoteTime+=dt;interactCooldown=Math.max(0,interactCooldown-dt);player.invuln=Math.max(0,player.invuln-dt);
+ if(toastTime>0){toastTime-=dt;if(toastTime<=0)$('toast').classList.remove('on');}
+ for(const p of level.plats){if(!p.moving)continue;const ox=p.x,oy=p.y;p.x=p.baseX+Math.sin(clock*.85+p.phase)*38;p.y=p.baseY+(levelIndex>2?Math.sin(clock*.7+p.phase)*10:0);p.dx=p.x-ox;p.dy=p.y-oy;}
+ if(player.standing?.moving&&player.onGround){player.x+=player.standing.dx;player.y+=player.standing.dy;}
+ const speed=player.carrying?256:306,axis=(input.right?1:0)-(input.left?1:0),target=axis*speed;
+ player.vx=ease(player.vx,target,Math.min(1,dt*(player.onGround?19:11)));
+ if(axis)player.facing=axis;
+ if(player.onGround)player.coyote=.115;else player.coyote=Math.max(0,player.coyote-dt);
+ jumpBuffer=Math.max(0,jumpBuffer-dt);
+ if(jumpBuffer>0&&player.coyote>0){player.vy=player.carrying?-642:-665;player.onGround=false;player.coyote=0;jumpBuffer=0;player.standing=null;sfx('jump');spark(player.x+15,player.y+60,4,'#b3b0a2');}
+ if(jumpReleased){if(player.vy< -220)player.vy*=.52;jumpReleased=false;}
+ player.vy=Math.min(1000,player.vy+1690*dt);
+ player.x=clamp(player.x+player.vx*dt,30,level.width-50);
+ if(!level.gate.open&&overlap(player,level.gate)){if(player.vx>0)player.x=level.gate.x-player.w;else if(player.vx<0)player.x=level.gate.x+level.gate.w;player.vx=0;}
+ const oldBottom=player.y+player.h;player.y+=player.vy*dt;player.onGround=false;player.standing=null;
+ if(player.vy>=0){const solids=getSolids().sort((a,b)=>a.y-b.y);for(const s of solids){if(player.x+player.w>s.x+2&&player.x<s.x+s.w-2&&oldBottom<=s.y+Math.max(3,s.dy||0)&&player.y+player.h>=s.y){player.y=s.y-player.h;player.vy=0;player.onGround=true;player.standing=s;break;}}}
+ if(player.y>H+30){hurt();return;}
+ if(Math.abs(player.vx)>20&&player.onGround)player.walk+=dt*Math.abs(player.vx)*.055;
+ if(!level.key.taken&&overlap(player,{x:level.key.x-5,y:level.key.y-4,w:36,h:32})){level.key.taken=true;player.hasKey=true;sfx('key');spark(level.key.x+10,level.key.y,17,'#e9c471');toast('Brass key found. Head right to the nursery gate.');say(['I had intended the key to be discovered entirely naturally.','A key. An elegant metaphor, though you appear to be using it to open a door.','I cannot help noticing that nobody has asked me about my book.','You seem to have learned that by being shown. Most irregular.','The final key. I trust there will be no further administrative demands.'][levelIndex]);setObjective();}
+ for(const page of level.pages){if(!page.taken&&overlap(player,page)){page.taken=true;levelPages++;spark(page.x,page.y,8,'#e2c47e');sfx('page');updateHUD();}}
+ if(!level.flag.active&&Math.abs(player.x-level.flag.x)<45&&player.y+player.h>FLOOR-35){level.flag.active=true;level.checkpoint={x:level.flag.x+10,y:FLOOR-player.h};if(!checkpointNotice){toast('Checkpoint lit. Progress through this chapter is safe.',2.5);checkpointNotice=true;}}
+ for(const e of level.enemies){e.x+=e.dir*e.speed*dt;if(e.x<e.left){e.x=e.left;e.dir=1;}if(e.x>e.right){e.x=e.right;e.dir=-1;}if(overlap({x:player.x+5,y:player.y+9,w:player.w-10,h:player.h-13},{x:e.x+3,y:e.y+5,w:e.w-6,h:e.h-5})){hurt();break;}}
+ if(mode!=='playing')return;
+ if(interactPressed){interactPressed=false;attemptInteraction();}
+ const desiredCam=clamp(player.x+player.w/2-W*.37,0,level.width-W);cam=ease(cam,desiredCam,Math.min(1,dt*6));
+ updatePrompt();
+ if(quoteTime>22){const lines=player.carrying?['I am beginning to suspect that you have a point.','Do mind the manuscript. It is about children.','I would assist, but my hands are full of principles.']:['I find this whole business rather excessively practical.','Perhaps we should pause to consider the nature of childhood.','Those are not obstacles. They are opportunities for spontaneous development.'];say(lines[quoteIndex++%lines.length]);}
+ if(soundOn){musicTimer-=dt;if(musicTimer<=0){const tune=[196,0,294,247,220,0,294,330,294,247,220,0,196,247,294,0];const f=tune[musicBeat++%tune.length];if(f)note(f,.28,.012,'triangle');musicTimer=.39;}}
+}
+function updatePrompt(){
+ const px=player.x+15,bottom=player.y+60;let t='';
+ if(player.carrying&&Math.abs(px-(level.exit.x+35))<82&&Math.abs(bottom-FLOOR)<65)t='Bring the child home';
+ else if(!player.carrying&&distance({x:px,y:bottom},{x:level.crib.x+30,y:FLOOR})<89)t='Pick up the child';
+ else if(!level.gate.open&&Math.abs(px-level.gate.x)<88&&bottom>level.gate.y)t=player.hasKey?'Unlock the nursery':'The nursery needs a key';
+ $('interaction').hidden=!t||mode!=='playing';if(t)$('interactionText').textContent=t;
+}
+function drawWindow(x,y,w=53,h=98,lit=true){
+ ctx.fillStyle='#112b34';ctx.beginPath();ctx.roundRect(x,y,w,h,[w/2,w/2,1,1]);ctx.fill();
+ const g=ctx.createLinearGradient(0,y,0,y+h);g.addColorStop(0,lit?'#c7a46a':'#52716e');g.addColorStop(1,lit?'#ecd3a0':'#34545a');
+ ctx.fillStyle=g;ctx.beginPath();ctx.roundRect(x+5,y+5,w-10,h-10,[(w-10)/2,(w-10)/2,0,0]);ctx.fill();
+ line(x+w/2,y+6,x+w/2,y+h-5,'#364d4a',3);line(x+5,y+h*.55,x+w-5,y+h*.55,'#364d4a',3);
+ rr(x-6,y+h,w+12,7,1,'#7d8370');
+ if(lit){ctx.globalAlpha=.06;ctx.fillStyle='#ffe2a5';ctx.beginPath();ctx.moveTo(x+5,y+h);ctx.lineTo(x+w-5,y+h);ctx.lineTo(x+w+30,FLOOR);ctx.lineTo(x-25,FLOOR);ctx.fill();ctx.globalAlpha=1;}
+}
+function drawBackground(){
+ const s=specs[levelIndex];const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#122d3c');g.addColorStop(.7,'#39565a');g.addColorStop(1,'#233b43');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+ for(let i=0;i<43;i++){const x=((rnd(i+40)*1800-cam*.12)%W+W)%W,y=28+rnd(i+12)*190;ctx.globalAlpha=.23+rnd(i)*.4;ellipse(x,y,1,1,'#eadfb4');}ctx.globalAlpha=1;
+ ellipse(978-cam*.055,76,29,29,'#d8d9b2');ellipse(990-cam*.055,66,29,29,'#17323e');
+ // Distant Paris rooftops.
+ for(let i=-1;i<10;i++){const x=i*170-(cam*.2%170);ctx.fillStyle='#1a3540';const ht=80+rnd(i+5)*75;ctx.fillRect(x,300-ht,173,210+ht);ctx.beginPath();ctx.moveTo(x-15,300-ht);ctx.lineTo(x+85,230-ht);ctx.lineTo(x+185,300-ht);ctx.fill();ctx.fillRect(x+110,210-ht,13,58);}
+ // The hospital facade is its own slow-moving layer.
+ const ox=-(cam*.55%240);
+ ctx.fillStyle=s.tint;ctx.fillRect(0,195,W,330);ctx.fillStyle='#132e35';ctx.fillRect(0,184,W,13);
+ ctx.fillStyle='#83908044';ctx.fillRect(0,198,W,3);
+ for(let row=0;row<11;row++){const yy=214+row*28;line(0,yy,W,yy,'#a0a18b0d');for(let i=-1;i<13;i++){const xx=ox+i*112+(row%2)*56;line(xx,yy,xx,yy+28,'#a0a18b0b');}}
+ for(let i=-1;i<7;i++){
+  const x=ox+i*240;
+  ctx.fillStyle='#122c343d';ctx.fillRect(x+5,202,22,318);
+  ctx.fillStyle='#8b998133';ctx.fillRect(x+2,205,9,310);rr(x-4,203,38,11,0,'#607163');
+  drawWindow(x+83,255,62,113,(i+levelIndex)%3!==1);
+  drawWindow(x+91,414,45,70,false);
+ }
+ ctx.fillStyle='#142b32';ctx.fillRect(0,506,W,14);
+ // Wall brackets and vines, kept behind the playfield.
+ for(let i=-1;i<5;i++){const x=i*370-(cam*.8%370)+240;line(x,222,x,299,'#102b31',4);line(x,242,x+24,260,'#102b31',3);for(let j=0;j<9;j++){const yy=233+j*22;ellipse(x+Math.sin(j)*13,yy,8,3,'#4b69564a');}}
+ const mist=ctx.createLinearGradient(0,400,0,600);mist.addColorStop(0,'#8eaf9a00');mist.addColorStop(1,'#8eaf9a16');ctx.fillStyle=mist;ctx.fillRect(0,400,W,210);
+}
+function drawGround(){
+ for(const pit of level.pits){
+  const x=pit.x-cam;if(x>W||x+pit.w<0)continue;
+  ctx.fillStyle='#0a202a';ctx.fillRect(x,FLOOR,pit.w,H-FLOOR);
+  const g=ctx.createLinearGradient(0,FLOOR,0,H);g.addColorStop(0,'#1b3b48');g.addColorStop(1,'#0a202a');ctx.fillStyle=g;ctx.fillRect(x,FLOOR+13,pit.w,130);
+  for(let j=0;j<5;j++){const yy=FLOOR+35+j*17,xx=x+12+Math.sin(visualClock*1.3+j)*5;line(xx,yy,xx+pit.w-25,yy,'#577b751f',1);}
+ }
+ for(const gr of level.ground){
+  const x=gr.x-cam;if(x>W||x+gr.w<0)continue;
+  ctx.fillStyle='#283d3d';ctx.fillRect(x,FLOOR,gr.w,H-FLOOR);
+  ctx.fillStyle='#728075';ctx.fillRect(x,FLOOR,gr.w,8);ctx.fillStyle='#a2a186';ctx.fillRect(x,FLOOR,gr.w,2);ctx.fillStyle='#3a5150';ctx.fillRect(x,FLOOR+9,gr.w,10);
+  for(let row=0;row<4;row++){const y=FLOOR+21+row*30;line(x,y,x+gr.w,y,'#112b333b');for(let col=Math.floor(gr.x/76);col<(gr.x+gr.w)/76;col++){const xx=col*76+(row%2)*38-cam;if(xx>x&&xx<x+gr.w)line(xx,y,xx,y+30,'#112b333b');}}
+  for(let j=0;j<gr.w/39;j++){const xx=x+j*39+10;if(rnd(j+gr.x)>.7){line(xx,FLOOR,xx-5,FLOOR-8,'#617365',2);line(xx+2,FLOOR,xx+6,FLOOR-6,'#617365',2);}}
+ }
+ if(level.bridges)for(const pit of level.pits){const x=pit.x-cam;rr(x-5,FLOOR-6,pit.w+10,16,1,'#8e8566');for(let j=0;j<pit.w;j+=22){line(x+j,FLOOR-5,x+j,FLOOR+9,'#4c584b');}line(x-5,FLOOR-6,x+pit.w+5,FLOOR-6,'#d2c290',2);}
+}
+function drawPlatforms(){
+ for(const p of level.plats){const x=p.x-cam;if(x>W+50||x+p.w< -50)continue;
+  if(p.moving){
+   line(x+14,183,x+14,p.y,'#8c927078',1);line(x+p.w-14,183,x+p.w-14,p.y,'#8c927078',1);
+   rr(x,p.y,p.w,p.h,3,'#9a865e','#b7a477');rr(x+8,p.y+p.h,p.w-16,5,1,'#4f6358');ellipse(x+16,p.y+11,3,3,'#e8c98b');ellipse(x+p.w-16,p.y+11,3,3,'#e8c98b');
+  }else{
+   rr(x,p.y,p.w,16,2,'#6a7766');ctx.fillStyle='#acaa87';ctx.fillRect(x-3,p.y,p.w+6,4);ctx.fillStyle='#455950';ctx.beginPath();ctx.moveTo(x+15,p.y+16);ctx.lineTo(x+28,p.y+39);ctx.lineTo(x+43,p.y+16);ctx.fill();ctx.beginPath();ctx.moveTo(x+p.w-15,p.y+16);ctx.lineTo(x+p.w-28,p.y+39);ctx.lineTo(x+p.w-43,p.y+16);ctx.fill();
+   // A few books make the architectural shelves read as part of the hospital.
+   if(p.y<400){for(let j=0;j<3;j++){rr(x+11+j*9,p.y-18-rnd(j)*7,7,18+rnd(j)*7,1,['#9a654c','#ac9b64','#527779'][j]);line(x+12+j*9,p.y-5,x+16+j*9,p.y-5,'#e7cf9577');}}
+  }
+ }
+}
+function drawDoor(){
+ const x=level.exit.x-cam,y=FLOOR-113;
+ rr(x-10,y-14,90,127,[44,44,0,0],'#6c7967');rr(x,y,70,113,[35,35,0,0],'#274e5d','#acac88');rr(x+7,y+9,56,104,[28,28,0,0],'#396b78');line(x+35,y+15,x+35,FLOOR,'#244a55',2);
+ rr(x+12,y+48,20,39,1,undefined,'#8ca99577');rr(x+39,y+48,18,39,1,undefined,'#8ca99577');ellipse(x+50,y+76,3,3,'#e7c474');rr(x-16,FLOOR-3,102,6,1,'#9d9b7a');
+ textAt('SAFE HAVEN',x+35,y-26,12,'#dfd1a8','center');
+ if(player?.carrying){const pulse=.4+Math.sin(visualClock*4)*.2;ctx.globalAlpha=pulse;rr(x-5,y-5,80,118,[40,40,0,0],undefined,'#f5d692');ctx.globalAlpha=1;textAt('← HOME',x+35,y-44,12,'#f2d493','center');}
+}
+function drawLantern(x,y,active){
+ const glow=ctx.createRadialGradient(x,y+20,1,x,y+20,65);glow.addColorStop(0,active?'#e8c07535':'#e8c07509');glow.addColorStop(1,'#e8c07500');ctx.fillStyle=glow;ctx.fillRect(x-65,y-45,130,130);
+ line(x,y-7,x,y+6,'#b4a376',2);rr(x-8,y+4,16,28,3,'#2b4141','#9f956c');rr(x-5,y+9,10,18,2,active?'#e4bf78':'#617872');line(x-10,y+3,x+10,y+3,'#c2af7d',2);line(x-10,y+33,x+10,y+33,'#6b7963',2);
+ if(active)ellipse(x,y+21,2,6,'#fff0bb');
+}
+function drawGate(){
+ const g=level.gate,x=g.x-cam;rr(x-14,g.y-18,54,g.h+18,1,'#4a6056');
+ ctx.fillStyle='#293f40';ctx.fillRect(x-5,g.y,g.w+10,g.h);
+ const opening=level.gate.open;ctx.save();ctx.translate(x+(opening?26:0),g.y);if(opening)ctx.scale(.26,1);
+ for(let j=0;j<4;j++){line(j*8,0,j*8,g.h,'#b09c72',3);ellipse(j*8,-1,3,4,'#c5b07d');}line(-1,74,26,74,'#a39870',4);line(-1,g.h-35,26,g.h-35,'#a39870',4);if(!opening){rr(5,g.h/2,17,22,3,'#cfad65','#e2c788');ellipse(13,g.h/2+8,2,3,'#534e37');}ctx.restore();
+ textAt('NURSERY',x+12,g.y-29,12,'#dacc9f','center');
+ drawLantern(level.flag.x-cam,FLOOR-62,level.flag.active);
+}
+function drawKey(k){if(k.taken)return;const x=k.x-cam+12,y=k.y+10+Math.sin(visualClock*3)*4;
+ const glow=ctx.createRadialGradient(x,y,0,x,y,35);glow.addColorStop(0,'#f6da8f40');glow.addColorStop(1,'#f6da8f00');ctx.fillStyle=glow;ctx.fillRect(x-35,y-35,70,70);
+ ctx.save();ctx.translate(x,y);ctx.rotate(-.35);ctx.strokeStyle='#edce84';ctx.lineWidth=4;ctx.beginPath();ctx.arc(-7,0,6,0,Math.PI*2);ctx.stroke();line(-1,0,17,0,'#edce84',4);line(12,0,12,6,'#edce84',3);line(17,0,17,6,'#edce84',3);ctx.restore();textAt('KEY',x,y-25,10,'#e5ce95','center','system-ui');
+}
+function drawPage(p){if(p.taken)return;const x=p.x-cam,y=p.y+Math.sin(visualClock*2.8+p.x)*3;
+ ctx.save();ctx.translate(x+10,y+12);ctx.rotate(Math.sin(visualClock*1.7)*.1);rr(-8,-11,16,23,2,'#e1c481','#f2dfaa');line(-4,-5,5,-5,'#9c885b');line(-4,0,5,0,'#9c885b');line(-4,5,2,5,'#9c885b');ctx.restore();
+}
+function drawCrib(){
+ const x=level.crib.x-cam,y=FLOOR-58;
+ if(!player.carrying){const glow=ctx.createRadialGradient(x+30,y-10,3,x+30,y-10,78);glow.addColorStop(0,'#e7c78b25');glow.addColorStop(1,'#e7c78b00');ctx.fillStyle=glow;ctx.fillRect(x-48,y-88,156,156);}
+ rr(x-4,y+9,74,29,8,'#a08c68','#c8b88c');rr(x+1,y+13,64,18,5,'#ebe0bb');
+ if(!player.carrying)drawBaby(x+31,y+8,1,ribbons[levelIndex],false);
+ for(let j=0;j<6;j++)line(x+j*13,y+9,x+j*13,y+49,'#776b51',3);
+ line(x-2,y+7,x-2,y+55,'#b9a47b',4);line(x+67,y+7,x+67,y+55,'#b9a47b',4);line(x-3,y+39,x+69,y+39,'#b9a47b',4);
+ if(!player.carrying){textAt('CHILD '+(levelIndex+1),x+32,y-40,11,'#eedbb0','center','system-ui');const yy=y-57+Math.sin(visualClock*3)*4;ctx.fillStyle='#e4bf7e';ctx.beginPath();ctx.moveTo(x+27,yy);ctx.lineTo(x+37,yy);ctx.lineTo(x+32,yy+7);ctx.fill();}
+ else textAt('An empty crib. Progress.',x+31,y-24,12,'#d4d1b1','center');
+}
+function drawBaby(x,y,scale,ribbon,carried){
+ ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);if(carried)ctx.rotate(-.46);
+ ellipse(0,7,11,17,'#ece3bf');ctx.fillStyle=ribbon;ctx.beginPath();ctx.moveTo(-10,3);ctx.lineTo(10,10);ctx.lineTo(8,16);ctx.lineTo(-9,9);ctx.fill();ellipse(0,-7,10,10,'#e7ddb7');ellipse(1,-7,7,7,'#e4b58c');ellipse(-1,-8,1,1,'#4e4b3e');ellipse(4,-8,1,1,'#4e4b3e');line(0,-4,3,-4,'#ae7e65');ctx.restore();
+}
+function drawPerson(x,y,facing=1,walk=0,carrying=false,scale=1,rousseau=false){
+ ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);
+ ellipse(15,61,18,4,'#0b242c42');
+ ctx.translate(15,0);ctx.scale(facing,1);
+ const swing=Math.sin(walk)*5;
+ line(-6,43,-7+swing,57,'#e1d3ac',7);line(6,43,7-swing,57,'#c6c7ac',7);rr(-12+swing,54,12,6,2,'#202f34');rr(2-swing,54,12,6,2,'#202f34');
+ // Coat, lapels and a readable human face.
+ ctx.fillStyle=rousseau?'#a5674d':'#447b87';ctx.beginPath();ctx.moveTo(-11,23);ctx.lineTo(10,23);ctx.lineTo(15,48);ctx.lineTo(3,46);ctx.lineTo(0,36);ctx.lineTo(-3,47);ctx.lineTo(-16,48);ctx.closePath();ctx.fill();
+ ctx.fillStyle='#ddd2b0';ctx.beginPath();ctx.moveTo(-4,23);ctx.lineTo(4,23);ctx.lineTo(7,41);ctx.lineTo(-5,41);ctx.fill();line(0,28,0,41,'#a8956f');
+ line(-10,26,-15,39,'#548d94',7);ellipse(-15,40,3,4,'#dcb18a');
+ if(carrying){line(9,29,14,38,'#548d94',7);drawBaby(16,28,.85,ribbons[levelIndex],true);line(12,38,25,37,'#74a0a1',6);ellipse(26,36,3,3,'#e5b790');}
+ else{line(10,27,13-Math.sin(walk)*3,40,'#548d94',7);ellipse(13-Math.sin(walk)*3,41,3,4,'#e5b790');}
+ rr(-7,17,13,9,3,'#dfad82');ellipse(0,11,11,13,'#e7b58c');ellipse(9,13,4,3,'#e7b58c');
+ if(rousseau){rr(-13,-5,25,14,[9,9,2,2],'#695740');rr(-14,3,27,7,2,'#897153');}
+ else{ellipse(-6,4,9,8,'#ded9c2');ellipse(-10,13,5,8,'#ded9c2');ellipse(-10,23,4,5,'#d5d1b9');ctx.fillStyle='#e4dfc8';ctx.beginPath();ctx.moveTo(-10,3);ctx.quadraticCurveTo(0,-6,8,4);ctx.lineTo(7,7);ctx.quadraticCurveTo(-2,3,-8,10);ctx.fill();}
+ ellipse(5,10,1.5,1.8,'#263c3b');line(2,6,7,6,'#71614c',1.4);line(4,18,8,17,'#a36f52',1);ellipse(6,15,3,1.5,'#d5907188');
+ ctx.fillStyle='#b97653';ctx.beginPath();ctx.moveTo(-5,23);ctx.lineTo(3,24);ctx.lineTo(7,30);ctx.lineTo(-1,28);ctx.fill();
+ ctx.restore();
+}
+function drawEnemy(e){
+ const x=e.x-cam,y=e.y+Math.sin(visualClock*4+e.phase)*3;
+ ellipse(x+15,FLOOR+1,20,3,'#0b242c44');ctx.save();ctx.translate(x+15,y+15);ctx.rotate(Math.sin(visualClock*4+e.phase)*.12);
+ ctx.fillStyle='#d9d0ad';ctx.beginPath();ctx.moveTo(-14,-13);ctx.lineTo(10,-13);ctx.lineTo(16,12);ctx.lineTo(-10,14);ctx.closePath();ctx.fill();line(-7,-7,7,-7,'#8c8868');line(-6,-2,8,-2,'#8c8868');line(-5,3,5,3,'#8c8868');ellipse(-3,7,1.3,1.3,'#596050');ellipse(6,7,1.3,1.3,'#596050');
+ ctx.restore();textAt('excuse',x+15,y-8,9,'#c1c7a4','center','system-ui');
+}
+function drawWorld(){
+ drawBackground();drawGround();drawPlatforms();drawDoor();drawGate();drawKey(level.key);for(const p of level.pages)drawPage(p);drawCrib();
+ for(const e of level.enemies)drawEnemy(e);
+ if(mode==='title'){
+  // A little tableau on the title screen; no external image assets.
+  for(let i=0;i<5;i++){const xx=625+i*66;rr(xx-20,FLOOR-20,40,15,5,'#9b8768');drawBaby(xx,FLOOR-34,.86,ribbons[i],false);line(xx-17,FLOOR-16,xx-17,FLOOR,'#b6a07b',3);line(xx+17,FLOOR-16,xx+17,FLOOR,'#b6a07b',3);}
+  drawPerson(983,FLOOR-75, -1,0,false,1.25,true);rr(1018,FLOOR-43,31,36,2,'#a58a55');textAt('É',1033,FLOOR-18,22,'#e5d1a2','center');
+ }else if(mode==='victory'){
+  for(let i=0;i<5;i++)drawBaby(215+i*40,FLOOR-28,.95,ribbons[i],false);
+  drawPerson(132,FLOOR-60,1,0,false,1.05);drawPerson(850,FLOOR-65,-1,0,false,1.1,true);
+ }else if(player){
+  if(player.invuln<=0||Math.floor(player.invuln*12)%2===0)drawPerson(player.x-cam,player.y,player.facing,player.onGround?player.walk:0,player.carrying);
+ }
+ for(const p of particles){ctx.globalAlpha=Math.min(1,p.life*2);rr(p.x-cam,p.y,p.size,p.size,1,p.c);ctx.globalAlpha=1;}
+ // Soft foreground vignette, plus an understated progress route.
+ const vign=ctx.createLinearGradient(0,0,0,H);vign.addColorStop(0,'#061b2522');vign.addColorStop(.45,'#061b2500');vign.addColorStop(1,'#061b2544');ctx.fillStyle=vign;ctx.fillRect(0,0,W,H);
+ if(mode==='playing'){
+  const bx=W-178,by=28;rr(bx,by,151,4,2,'#9eac8d33');rr(bx,by,151*clamp(player.x/level.width,0,1),4,2,player.carrying?'#9bb99a':'#d1b373');ellipse(bx+151*(level.crib.x/level.width),by+2,3,3,'#e3c380');textAt(player.carrying?'← SAFE HAVEN':'NURSERY →',W-27,by+21,10,'#d6d3ac','right','system-ui');
+ }
+}
+function render(){ctx.clearRect(0,0,W,H);drawWorld();}
+function frame(timestamp){
+ const dt=last?Math.min((timestamp-last)/1000,.05):0;last=timestamp;visualClock+=dt;
+ if(mode==='playing'){acc+=dt;while(acc>=1/120){step(1/120);acc-=1/120;if(mode!=='playing'){acc=0;break;}}}else acc=0;
+ if(mode!=='paused'&&mode!=='retry'){for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=270*dt;p.life-=dt;}particles=particles.filter(p=>p.life>0);}
+ render();requestAnimationFrame(frame);
+}
+function syncInput(){
+ const oldJump=input.jump,oldAct=input.interact;
+ input.left=physicalKeys.has('ArrowLeft')||physicalKeys.has('KeyA')||touchKeys.has('left');
+ input.right=physicalKeys.has('ArrowRight')||physicalKeys.has('KeyD')||touchKeys.has('right');
+ input.jump=physicalKeys.has('Space')||physicalKeys.has('ArrowUp')||physicalKeys.has('KeyW')||touchKeys.has('jump');
+ input.interact=physicalKeys.has('KeyE')||physicalKeys.has('ArrowDown')||touchKeys.has('interact');
+ if(input.jump&&!oldJump&&mode==='playing')jumpBuffer=.15;
+ if(!input.jump&&oldJump)jumpReleased=true;
+ if(input.interact&&!oldAct&&mode==='playing')interactPressed=true;
+}
+document.addEventListener('keydown',e=>{
+ const isButton=e.target?.tagName==='BUTTON',isLink=e.target?.tagName==='A',isSummary=e.target?.tagName==='SUMMARY';
+ if(e.code==='Escape'||e.code==='KeyP'){if(mode==='playing'||mode==='paused'){e.preventDefault();if(!e.repeat)pauseGame();}return;}
+ if(e.code==='KeyR'&&mode==='playing'){e.preventDefault();if(!e.repeat)restartLevel();return;}
+ if(e.code==='Enter'&&!isButton&&!isLink&&!isSummary){if(mode==='title'){e.preventDefault();startGame();return;}if(mode==='complete'){e.preventDefault();nextLevel();return;}if(mode==='retry'){e.preventDefault();restartLevel();return;}}
+ if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyA','KeyD','KeyW','KeyE'].includes(e.code)&&mode==='playing'&&!isButton&&!isLink&&!isSummary){e.preventDefault();physicalKeys.add(e.code);syncInput();}
+});
+document.addEventListener('keyup',e=>{physicalKeys.delete(e.code);syncInput();});
+document.querySelectorAll('[data-control]').forEach(b=>{
+ const key=b.dataset.control;
+ b.addEventListener('pointerdown',e=>{e.preventDefault();if(mode!=='playing')return;b.setPointerCapture(e.pointerId);touchKeys.add(key);b.classList.add('active');syncInput();});
+ const release=e=>{e.preventDefault();touchKeys.delete(key);b.classList.remove('active');syncInput();};
+ b.addEventListener('pointerup',release);b.addEventListener('pointercancel',release);b.addEventListener('lostpointercapture',()=>{touchKeys.delete(key);b.classList.remove('active');syncInput();});
+ b.addEventListener('contextmenu',e=>e.preventDefault());
+});
+canvas.addEventListener('pointerdown',()=>{if(mode==='playing')canvas.focus();});
+window.addEventListener('blur',()=>{clearInput();if(mode==='playing')pauseGame();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(mode==='playing')pauseGame();}});
+$('sound').onclick=toggleSound;$('pause').onclick=pauseGame;$('restart').onclick=restartLevel;
+$('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if($('stage').requestFullscreen)await $('stage').requestFullscreen();else toast('Full screen is unavailable in this browser. Try rotating your device.',3);}catch(e){toast('Use your browser’s full-screen command to enlarge the game.',3);}if(mode==='playing')canvas.focus();};
+if(navigator.maxTouchPoints>0)document.body.classList.add('touch-on');
+showTitle();requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
